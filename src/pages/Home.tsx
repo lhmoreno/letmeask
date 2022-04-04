@@ -1,82 +1,135 @@
-import { FormEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ref, child, get } from 'firebase/database'
+import styled, { CSSObject } from 'styled-components'
+import { MdLogin } from 'react-icons/md'
 
-import illustrationImg from '../assets/images/illustration.svg'
-import logoImg from '../assets/images/logo.svg'
-import googleIconImg from '../assets/images/google-icon.svg'
-import { database } from '../services/firebase'
-import { useAuth } from '../hooks/useAuth'
-import { Button } from '../components/Button'
-import '../styles/auth.scss'
+import illustrationImg from '../assets/images/illustration-main.svg'
+import logoWhiteImg from '../assets/images/logo-white.svg'
+
+interface ButtonProps {
+  variant?: 'normal' | 'outline'
+}
 
 export function Home() {
-  const navigate = useNavigate()
-  const { user, signInWithGoogle } = useAuth()
-  const [roomCode, setRoomCode] = useState('')
-
-  async function handleCreateRoom() {
-    if (!user) {
-      await signInWithGoogle()
-    }
-
-    navigate('/rooms/new')
-  }
-
-  async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault()
-
-    if (roomCode.trim() === '') return
-
-    const dbRef = ref(database)
-    const roomRef = await get(child(dbRef, `rooms/${roomCode}`))
-
-    if (!roomRef.exists()) {
-      alert('Room does not exists.')
-      return
-    }
-
-    if (roomRef.val().endedAt) {
-      alert('Room already closed.')
-      return
-    }
-
-    navigate(`/rooms/${roomCode}`)
-  }
-
   return (
-    <div id="page-auth">
-      <aside>
-        <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>
-          Tire as dúvidas da sua audiência em tempo-real
-        </p>
-      </aside>
-
-      <main>
-        <div className="main-content">
-          <img src={logoImg} alt="Letmeask" />
-          <button onClick={handleCreateRoom} className="create-room">
-            <img src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
-
-          <div className="separator">ou entre em uma sala</div>
-
-          <form onSubmit={handleJoinRoom}>
-            <input 
-              type="text" 
-              placeholder="Digite o código da sala"
-              onChange={event => setRoomCode(event.target.value)}
-              value={roomCode}
-            />
-            <Button type="submit">
-              Entrar na sala
-            </Button>
-          </form>
-        </div>
-      </main>
-    </div>
+    <Container>
+      <Content>
+        <Logo src={logoWhiteImg} alt="Logo com o nome Letmeask" />
+        <Info>
+          <Title>Toda pergunta tem uma resposta.</Title>
+          <Subtitle>Aprenda e compartilhe conhecimento com outras pessoas</Subtitle>
+        </Info>
+        <Buttons>
+          <Button>
+            <LoginIcon />
+            <p>Entrar em uma sala</p>
+          </Button>
+          <Button variant="outline">Criar uma sala</Button>
+        </Buttons>
+      </Content>
+      <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
+    </Container>
   )
 }
+
+const Container = styled.div(({ theme }) => {
+  return {
+    backgroundColor: theme.colors.primary,
+    color: 'white',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '80px'
+  }
+})
+
+const Content = styled.div(({ theme }) => {
+  return {
+    maxWidth: '440px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '32px'
+  }
+})
+
+const Logo = styled.img(({ theme }) => {
+  return {
+    width: '272px'
+  }
+})
+
+const Info = styled.div(({ theme }) => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  }
+})
+
+
+const Title = styled.strong(({ theme }) => {
+  return {
+    fontFamily: 'Poppins',
+    fontSize: '36px'
+  }
+})
+
+const Subtitle = styled.p(({ theme }) => {
+  return {
+    fontSize: '24px',
+    color: theme.colors.background
+  }
+})
+
+const Buttons = styled.div(({ theme }) => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  }
+})
+
+const Button = styled.button<ButtonProps>(({ theme, variant = 'normal' }) => {
+  const button: CSSObject = {
+    width: '320px',
+    height: '50px',
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    fontWeight: '500',
+    borderRadius: '8px',
+    transitionProperty: 'background',
+    transitionDuration: '0.3s'
+  }
+
+  const normal: CSSObject = {
+    color: theme.colors.text,
+    backgroundColor: 'white',
+    ":hover": {
+      backgroundColor: '#EFEFEF'
+    }
+  }
+
+  const outline: CSSObject = {
+    color: 'white',
+    borderWidth: '2px',
+    borderStyle: 'solid',
+    borderColor: 'white',
+    ":hover": {
+      backgroundColor: theme.colors.hover.primary
+    }
+  }
+
+
+  return variant === 'normal' ? {...button, ...normal} : {...button, ...outline}
+})
+
+const LoginIcon = styled(() => MdLogin({size:18}))(({ theme }) => {
+  return {
+    color: theme.colors.text
+  }
+})
+
