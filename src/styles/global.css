@@ -6,9 +6,9 @@
 
 body {
   background: #f8f8f8;
-  color: #29292e;
+  /* color: #29292e; */
 }
 
-body, input, button, textarea {
-  font: 300 16px 'Roboto', sans-serif;
+body, button {
+  font: 400 16px 'Roboto', sans-serif;
 }
