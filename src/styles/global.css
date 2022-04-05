@@ -9,6 +9,6 @@ body {
   /* color: #29292e; */
 }
 
-body, button {
+body, button, input, textarea {
   font: 400 16px 'Roboto', sans-serif;
 }
