@@ -1,5 +1,6 @@
 import styled, { CSSObject } from 'styled-components'
 import { MdLogin } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 
 import illustrationImg from '../assets/images/illustration-main.svg'
 import logoWhiteImg from '../assets/images/logo-white.svg'
@@ -9,6 +10,16 @@ interface ButtonProps {
 }
 
 export function Home() {
+  const navigate = useNavigate()
+
+  function handleEnterRoom() {
+    navigate('/rooms')
+  }
+  
+  function handleCreateRoom() {
+    navigate('/login')
+  }
+
   return (
     <Container>
       <Content>
@@ -18,11 +29,11 @@ export function Home() {
           <Subtitle>Aprenda e compartilhe conhecimento com outras pessoas</Subtitle>
         </Info>
         <Buttons>
-          <Button>
+          <Button onClick={handleEnterRoom}>
             <LoginIcon />
-            <p>Entrar em uma sala</p>
+            Entrar em uma sala
           </Button>
-          <Button variant="outline">Criar uma sala</Button>
+          <Button variant="outline" onClick={handleCreateRoom}>Criar uma sala</Button>
         </Buttons>
       </Content>
       <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />

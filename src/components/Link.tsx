@@ -18,7 +18,10 @@ export function Link({ children, to }: LinkProps) {
 
 const LinkStyled = styled(LinkRouter)(({ theme }) => {
   return {
-    textDecoration: 'underline',
-    color: theme.colors.link
+    color: theme.colors.link,
+    textDecoration: 'none',
+    ":hover": {
+      textDecoration: 'underline'
+    }
   }
 })

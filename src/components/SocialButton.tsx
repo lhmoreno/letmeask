@@ -6,9 +6,10 @@ import { ImGooglePlus } from 'react-icons/im'
 
 interface ButtonProps  {
   variant?: 'github' | 'facebook' | 'google' | 'email'
+  onClick?: () => void
 }
 
-export function SocialButton({ variant = 'email' }: ButtonProps) {
+export function SocialButton({ variant = 'email', onClick }: ButtonProps) {
   function Icon() {
     switch (variant) {
       case "email":
@@ -25,7 +26,7 @@ export function SocialButton({ variant = 'email' }: ButtonProps) {
   }
 
   return (
-    <Button variant={variant}>
+    <Button variant={variant} onClick={onClick}>
       <IconContainer variant={variant}>
         <Icon />
       </IconContainer>
