@@ -8,7 +8,8 @@ const defaultTheme: DefaultTheme = {
     link: '#E559F9',
     gray: {
       dark: '#737380',
-      medium: '#A8A8B3'
+      medium: '#A8A8B3',
+      light: '#DBDCDD'
     },
     hover: {
       primary: '#6F4BD8'
