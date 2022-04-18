@@ -50,7 +50,7 @@ const Container = styled.div(({ theme }) => {
 
 const QuestionText = styled.p(({ theme }) => {
   return {
-    color: theme.colors.text
+    // color: theme.colors.text
   }
 })
 
@@ -101,11 +101,11 @@ const ButtonIcon = styled.button(({ theme }) => {
     justifyContent: 'center',
     alignItems: 'center',
     gap: '8px',
-    color: theme.colors.gray.dark,
+    // color: theme.colors.gray.dark,
     transitionProperty: 'color',
     transitionDuration: '0.3s',
     ":hover": {
-      color: theme.colors.primary
+      // color: theme.colors.primary
     }
   }
 })

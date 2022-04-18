@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { MdOutlineCancel, MdOutlineDelete } from 'react-icons/md'
 
-import { Button } from './Button'
+// import { Button } from './Button'
 
 interface ModalProps {
   icon?: 'cancel' | 'delete'
@@ -36,7 +36,7 @@ export function Modal({ icon = 'cancel', title, description, buttonTextConfirm, 
         <Title>{ title }</Title>
         <Description>{ description }</Description>
         <Buttons>
-          <Button 
+          {/* <Button 
             title="Cancelar"
             variant="simple"
             onClick={() => onSubmit && onSubmit(false)}
@@ -45,7 +45,7 @@ export function Modal({ icon = 'cancel', title, description, buttonTextConfirm, 
             title={buttonTextConfirm}
             variant="danger"
             onClick={() => onSubmit && onSubmit(true)}
-          />
+          /> */}
         </Buttons>
       </ModalContainer>
     </Container>
@@ -85,14 +85,14 @@ const Title = styled.p(({ theme }) => {
     fontFamily: '"Poppins", sans-serif',
     fontSize: '24px',
     fontWeight: '700',
-    color: theme.colors.text
+    // color: theme.colors.text
   }
 })
 
 const Description = styled.p(({ theme }) => {
   return {
     marginTop: '12px',
-    color: theme.colors.gray.dark
+    // color: theme.colors.gray.dark
   }
 })
 

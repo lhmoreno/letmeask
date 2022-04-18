@@ -1,10 +1,10 @@
-import { AccountContainer } from '../components/AccountContainer'
-import { Button } from '../components/Button'
-import { Input } from '../components/Input'
+import AccountNavigation from '../../../components/AccountNavigation'
+import Button from '../../../components/Button'
+import { Input } from '../../../components/Input'
 
-export function ForgotPassword() {
+function ForgotPassword() {
   return (
-    <AccountContainer 
+    <AccountNavigation 
       title="Esqueci minha senha:" 
       backPath="/login"
     >
@@ -15,6 +15,8 @@ export function ForgotPassword() {
         placeholder="Digite seu email"
       />
       <Button title="Recuperar" icon="ToInbox" />
-    </AccountContainer>
+    </AccountNavigation>
   )
 }
+
+export default ForgotPassword

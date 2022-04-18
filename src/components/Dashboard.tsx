@@ -54,10 +54,10 @@ const LinkStyled = styled(Link)(({ theme }) => {
     alignItems: 'center',
     gap: '8px',
     textDecoration: 'none',
-    color: theme.colors.gray.dark,
+    // color: theme.colors.gray.dark,
     ":hover": {
       fontWeight: '500',
-      color: theme.colors.primary
+      // color: theme.colors.primary
     }
   }
 })

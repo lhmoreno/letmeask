@@ -55,7 +55,7 @@ const Button = styled.button<ButtonProps>(({ theme, variant }) => {
   const email: CSSObject = {
     backgroundColor: '#8E68FF',
     ":hover": {
-      backgroundColor: theme.colors.primary
+      // backgroundColor: theme.colors.primary
     }
   }
 
@@ -104,7 +104,7 @@ const IconContainer = styled.div<ButtonProps>(({ theme, variant }) => {
   }
 
   const email: CSSObject = {
-    backgroundColor: theme.colors.primary
+    // backgroundColor: theme.colors.primary
   }
 
   const github: CSSObject = {
