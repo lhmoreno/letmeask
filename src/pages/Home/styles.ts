@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import SVG, { Props as SVGProps } from 'react-inlinesvg'
+import SVG from 'react-inlinesvg'
 
 import StyledContainer from '../../styles/components/Container'
 
