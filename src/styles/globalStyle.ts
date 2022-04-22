@@ -11,17 +11,21 @@ const GlobalStyle = createGlobalStyle<Theme>(({ theme }) => {
       padding: 0,
       boxSizing: 'border-box'
     },
-  
+
     'body': {
+      backgroundColor: theme.colors.background
+    },
+    
+    'body, input': {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '16px',
-      backgroundColor: theme.colors.background,
+      color: theme.colors.black,
       [`@media (max-width: ${theme.breakpoints.small})`]: {
         fontSize: '14px'
       }
     },
-
-    'h1': {
+    
+    'h1, h2': {
       fontFamily: 'Poppins, sans-serif'
     }
   }
