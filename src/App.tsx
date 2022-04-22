@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import { UserProvider } from './contexts/UserContext'
 
-import Home from './pages/Home'
+import Routes from './Routes'
 
 import GlobalStyle from './styles/globalStyle'
 import { theme } from './styles/theme'
@@ -9,12 +10,12 @@ import { theme } from './styles/theme'
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle theme={theme} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </ThemeProvider>
+      <UserProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle theme={theme} />
+            <Routes />
+        </ThemeProvider>
+      </UserProvider>
     </BrowserRouter>
   )
 }

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import { useUser } from '../../hooks/useUser'
 import SplashScreen from '../../components/SplashScreen'
 import illustrationSvg from '../../assets/images/illustration.svg'
 import logoSvg from '../../assets/images/logo-white.svg'
@@ -7,16 +6,9 @@ import enterIcon from '../../assets/icons/enter.svg'
 import * as Styled from './styles'
 
 function Home() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const { authStatus } = useUser()
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 300)
-
-    return () => clearTimeout(timeout)
-  }, [])
-
-  if (isLoading) return <SplashScreen />
+  if (authStatus === 'pending') return <SplashScreen />
 
   return (
     <Styled.Container>
@@ -37,7 +29,7 @@ function Home() {
               Entrar em uma sala
             </Styled.LinkPrimary>
             <Styled.LinkSecondary to="/">
-              { isAuthenticated ? 'Criar uma sala' : 'Fazer login' }
+              { authStatus === 'authenticated' ? 'Criar uma sala' : 'Fazer login' }
             </Styled.LinkSecondary>
           </Styled.Links>
         </Styled.Main>
