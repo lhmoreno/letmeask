@@ -15,6 +15,8 @@ declare module 'styled-components' {
       primaryHover: string
       white: string
       gray: string
+      grayHover: string
+      pink: string
       black: string
       background: string
     }

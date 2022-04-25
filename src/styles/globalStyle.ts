@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle<Theme>(({ theme }) => {
       backgroundColor: theme.colors.background
     },
     
-    'body, input': {
+    'body, input, textarea, button': {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '16px',
       color: theme.colors.black,
@@ -27,6 +27,12 @@ const GlobalStyle = createGlobalStyle<Theme>(({ theme }) => {
     
     'h1, h2': {
       fontFamily: 'Poppins, sans-serif'
+    },
+
+    'input, textarea': {
+      "::placeholder": {
+        color: theme.colors.gray
+      }
     }
   }
 })

@@ -14,6 +14,8 @@ export const theme: DefaultTheme = {
     primaryHover: '#6F4BD8',
     white: '#FFFFFF',
     gray: '#A8A8B3',
+    grayHover: '#737380',
+    pink: '#E559F9',
     black: '#29292E',
     background: '#F8F8F8'
   }
