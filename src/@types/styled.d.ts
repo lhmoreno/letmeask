@@ -17,6 +17,8 @@ declare module 'styled-components' {
       gray: string
       grayHover: string
       pink: string
+      red: string
+      redHover: string
       black: string
       background: string
     }

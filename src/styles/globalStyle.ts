@@ -19,8 +19,10 @@ const GlobalStyle = createGlobalStyle<Theme>(({ theme }) => {
     'body, input, textarea, button': {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '16px',
+      lineHeight: '23px',
       color: theme.colors.black,
       [`@media (max-width: ${theme.breakpoints.small})`]: {
+        lineHeight: '21px',
         fontSize: '14px'
       }
     },
