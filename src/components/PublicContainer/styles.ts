@@ -73,7 +73,13 @@ export const Content = styled.div(({ theme }) => {
 
 export const Title = styled.h1(({ theme }) => {
   return {
-    fontSize: '24px'
+    fontSize: '24px',
+    [`@media (max-width: ${theme.breakpoints.medium})`]: {
+      fontSize: '22px'
+    },
+    [`@media (max-width: ${theme.breakpoints.small})`]: {
+      fontSize: '20px'
+    }
   }
 })
 

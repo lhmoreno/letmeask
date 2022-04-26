@@ -7,6 +7,8 @@ import Routes from './Routes'
 import GlobalStyle from './styles/globalStyle'
 import { theme } from './styles/theme'
 
+import './services/firebase'
+
 function App() {
   return (
     <BrowserRouter>

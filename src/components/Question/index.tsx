@@ -18,13 +18,12 @@ function Question({ content, author }: QuestionProps) {
         <Styled.UserName>{ author.name }</Styled.UserName>
       </Styled.UserInfo>
 
-      <Styled.QuestionInfo>
-        <p>{ content }</p>
-        <Styled.ButtonIcon>
-          2
-          <Styled.LikeIcon src={likeSvg} />
-        </Styled.ButtonIcon>
-      </Styled.QuestionInfo>
+      <p>{ content }</p>
+      
+      <Styled.ButtonIcon>
+        <p>2</p>
+        <Styled.LikeIcon src={likeSvg} />
+      </Styled.ButtonIcon>
     </Styled.Container>
   )
 }

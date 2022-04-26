@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { useUser } from '../../hooks/useUser'
+import SplashScreen from '../../components/SplashScreen'
+import AccountOptions from '../../components/AccountOptions'
 import Textarea from '../../components/Textarea'
 import Question from '../../components/Question'
 import logoSvg from '../../assets/images/logo.svg'
@@ -8,26 +11,12 @@ import accountImg from '../../assets/images/account.png'
 import messagesSvg from '../../assets/images/messages.svg'
 import * as Styled from './styles'
 
-const fakeQuestions = [
-  {
-    content: 'Cillum reprehenderit nulla sint reprehenderit sint minim qui adipisicing. Officia commodo cupidatat sint laborum voluptate officia ex non Lorem consectetur in commodo quis eiusmod. Enim eu exercitation enim anim ea dolor ullamco. Eu sit cillum amet consequat. Dolore laboris proident sit duis esse quis sint sit aliqua minim id pariatur consequat aliquip. Fugiat velit esse sit ullamco deserunt consequat dolore reprehenderit sint voluptate anim. Excepteur aliqua minim ex dolor magna id.',
-    author: {
-      name: 'Luiz Henrique',
-      avatar: accountImg
-    }
-  },
-  {
-    content: 'Olá tudo bem?',
-    author: {
-      name: 'Luiz Henrique2',
-      avatar: accountImg
-    }
-  }
-]
-
 function Room() {
-  const [questions, setQuestions] = useState(fakeQuestions)
-  const [isDashboardOpen, setIsDashboardOpen] = useState(false)
+  const [questions, setQuestions] = useState([])
+  const [isAccountOptionsOpen, setIsAccountOptionsOpen] = useState(false)
+  const { authStatus } = useUser()
+
+  if (authStatus === 'pending') return <SplashScreen />
 
   return (
     <Styled.Container>
@@ -36,8 +25,8 @@ function Room() {
           <Styled.Logo src={logoSvg} />
         </Link>
         <Styled.AccountContainer>
-          <Styled.AccountImage src={accountImg} onClick={() => setIsDashboardOpen(s => !s)} />
-          {/* { isDashboardOpen && <Dashboard /> } */}
+          <Styled.AccountImage src={accountImg} onClick={() => setIsAccountOptionsOpen(s => !s)} />
+          { isAccountOptionsOpen && <AccountOptions /> }
         </Styled.AccountContainer>
       </Styled.Header>
 
@@ -67,8 +56,9 @@ function Room() {
             </Styled.NoQuestionsContainer>
           ) : (
             <Styled.QuestionsContainer>
-              { questions.map(({ author, content }) => (
+              { questions.map(({ author, content }, index) => (
                   <Question 
+                    key={String(index)}
                     author={author}
                     content={content}
                   />

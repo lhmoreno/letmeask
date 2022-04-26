@@ -56,9 +56,11 @@ export const AccountImage = styled.img(({ theme }) => {
     borderRadius: '50%',
     cursor: 'pointer',
     [`@media (max-width: ${theme.breakpoints.medium})`]: {
+      transform: 'translateY(2px)',
       height: '40px'
     },
     [`@media (max-width: ${theme.breakpoints.small})`]: {
+      transform: 'translateY(3px)',
       height: '32px'
     }
   }

@@ -1,29 +1,23 @@
+import { useState } from 'react'
+
+import SplashScreen from '../../components/SplashScreen'
 import PublicContainer from '../../components/PublicContainer'
 import Input from '../../components/Input'
 import enterIcon from '../../assets/icons/enter.svg'
 import * as Styled from './styles'
+import { useUser } from '../../hooks/useUser'
 
 interface RoomProps {
   title: string
   code: string
 }
 
-const fakeRooms: RoomProps[] = [
-  {
-    title: 'Teste 123 de titulo bem longo sem limite de tao longo que é',
-    code: '123456'
-  },
-  {
-    title: 'Teste 123',
-    code: '123456'
-  },
-  {
-    title: 'Teste 123',
-    code: '123456'
-  }
-]
-
 function Rooms() {
+  const [rooms, setRooms] = useState<RoomProps[]>([])
+  const { authStatus } = useUser()
+
+  if (authStatus === 'pending') return <SplashScreen />
+
   return (
     <PublicContainer 
       title="Salas"
@@ -31,7 +25,7 @@ function Rooms() {
       <Input 
         placeholder="Digite o código da sala"
       />
-      { fakeRooms.map((room, index) => (
+      { rooms.map((room, index) => (
           <Room 
             key={String(index)}
             title={room.title}

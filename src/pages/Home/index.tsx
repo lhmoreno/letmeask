@@ -28,7 +28,7 @@ function Home() {
               <Styled.EnterIcon src={enterIcon} />
               Entrar em uma sala
             </Styled.LinkPrimary>
-            <Styled.LinkSecondary to="/">
+            <Styled.LinkSecondary to={ authStatus === 'authenticated' ? '/' : '/login' }>
               { authStatus === 'authenticated' ? 'Criar uma sala' : 'Fazer login' }
             </Styled.LinkSecondary>
           </Styled.Links>

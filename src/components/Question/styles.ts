@@ -22,9 +22,13 @@ export const UserInfo = styled.div(({ theme }) => {
 
 export const UserImage = styled.img(({ theme }) => {
   return {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%'
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    [`@media (max-width: ${theme.breakpoints.small})`]: {
+      width: '32px',
+      height: '32px'
+    }
   }
 })
 
@@ -32,15 +36,10 @@ export const UserName = styled.p(({ theme }) => {
   return {
     marginLeft: '8px',
     color: theme.colors.grayHover,
-    fontSize: '14px'
-  }
-})
-
-export const QuestionInfo = styled.div(({ theme }) => {
-  return {
-    display: 'flex',
-    justifyContent: 'space-between',
-    gap: '24px'
+    fontSize: '16px',
+    [`@media (max-width: ${theme.breakpoints.small})`]: {
+      fontSize: '14px'
+    }
   }
 })
 
@@ -50,13 +49,23 @@ export const ButtonIcon = styled.button(({ theme }) => {
     background: 'none',
     border: 'none',
     display: 'flex',
+    alignItems: 'center',
     gap: '8px',
     fontFamily: 'Poppins, sans-serif',
     color: theme.colors.gray,
     transitionProperty: 'color',
     transitionDuration: '0.2s',
+    "p": {
+      transform: 'translateY(3px)'
+    },
     ":hover": {
       color: theme.colors.grayHover
+    },
+    [`@media (max-width: ${theme.breakpoints.small})`]: {
+      gap: '4px',
+      "p": {
+        transform: 'translateY(2px)'
+      }
     },
 
     "path": {
@@ -72,6 +81,9 @@ export const ButtonIcon = styled.button(({ theme }) => {
 
 export const LikeIcon = styled(SVG)(({ theme }) => {
   return {
-    
+    height: '20px',
+    [`@media (max-width: ${theme.breakpoints.small})`]: {
+      height: '16px'
+    }
   }
 })
