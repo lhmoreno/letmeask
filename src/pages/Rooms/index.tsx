@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+import useRooms from '../../hooks/useRooms'
 import SplashScreen from '../../components/SplashScreen'
 import PublicContainer from '../../components/PublicContainer'
 import Input from '../../components/Input'
@@ -9,11 +8,11 @@ import { useUser } from '../../hooks/useUser'
 
 interface RoomProps {
   title: string
-  code: string
+  id: string
 }
 
 function Rooms() {
-  const [rooms, setRooms] = useState<RoomProps[]>([])
+  const { search, onChangeSearch, rooms } = useRooms()
   const { authStatus } = useUser()
 
   if (authStatus === 'pending') return <SplashScreen />
@@ -23,13 +22,15 @@ function Rooms() {
       title="Salas"
     >
       <Input 
+        value={search}
+        onChange={onChangeSearch}
         placeholder="Digite o código da sala"
       />
-      { rooms.map((room, index) => (
+      { rooms.map((room) => (
           <Room 
-            key={String(index)}
+            key={room.id}
+            id={room.id}
             title={room.title}
-            code={room.code}
           />
         ))
       }
@@ -37,15 +38,15 @@ function Rooms() {
   )
 }
 
-function Room({ title, code }: RoomProps) {
+function Room({ title, id }: RoomProps) {
   return (
     <Styled.RoomContainer>
       <Styled.RoomInfoContainer>
         <Styled.RoomTitle>{ title }</Styled.RoomTitle>
-        <Styled.RoomCode>{ `#${code}` }</Styled.RoomCode>
+        <Styled.RoomCode>{ `#${id}` }</Styled.RoomCode>
       </Styled.RoomInfoContainer>
 
-      <Styled.RoomLink to={`/rooms/${code}`}>
+      <Styled.RoomLink to={`/rooms/${id}`}>
         <Styled.EnterIcon src={enterIcon} />
       </Styled.RoomLink>
     </Styled.RoomContainer>
