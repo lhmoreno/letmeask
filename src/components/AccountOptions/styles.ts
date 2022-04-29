@@ -53,7 +53,7 @@ export const Icon = styled(SVG)(({ theme }) => {
   }
 })
 
-export const ButtonSignOut = styled.button(({ theme }) => {
+export const Button = styled.button(({ theme }) => {
   return {
     border: 'none',
     background: 'none',
