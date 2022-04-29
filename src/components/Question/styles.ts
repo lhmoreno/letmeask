@@ -1,5 +1,9 @@
-import styled from 'styled-components'
+import styled, { CSSObject } from 'styled-components'
 import SVG from 'react-inlinesvg'
+
+interface StyledButtonIconProps {
+  liked?: boolean
+}
 
 export const Container = styled.div(({ theme }) => {
   return {
@@ -43,8 +47,9 @@ export const UserName = styled.p(({ theme }) => {
   }
 })
 
-export const ButtonIcon = styled.button(({ theme }) => {
-  return {
+export const ButtonIcon = styled.button<StyledButtonIconProps>(({ theme, liked }) => {
+  const styles: CSSObject = {
+    width: 'min-content',
     cursor: 'pointer',
     background: 'none',
     border: 'none',
@@ -52,14 +57,10 @@ export const ButtonIcon = styled.button(({ theme }) => {
     alignItems: 'center',
     gap: '8px',
     fontFamily: 'Poppins, sans-serif',
-    color: theme.colors.gray,
     transitionProperty: 'color',
     transitionDuration: '0.2s',
     "p": {
       transform: 'translateY(3px)'
-    },
-    ":hover": {
-      color: theme.colors.grayHover
     },
     [`@media (max-width: ${theme.breakpoints.small})`]: {
       gap: '4px',
@@ -68,13 +69,32 @@ export const ButtonIcon = styled.button(({ theme }) => {
       }
     },
 
+    
+  }
+
+  if (!liked) {
+    return {
+      ...styles,
+      color: theme.colors.gray,
+      ":hover": {
+        color: theme.colors.grayHover
+      },
+      "path": {
+        transitionProperty: 'stroke',
+        transitionDuration: '0.2s',
+        stroke: theme.colors.gray
+      },
+      ":hover path": {
+        stroke: theme.colors.grayHover
+      }
+    }
+  }
+
+  return {
+    ...styles,
+    color: theme.colors.primary,
     "path": {
-      transitionProperty: 'stroke',
-      transitionDuration: '0.2s',
-      stroke: theme.colors.gray
-    },
-    ":hover path": {
-      stroke: theme.colors.grayHover
+      stroke: theme.colors.primary
     }
   }
 })

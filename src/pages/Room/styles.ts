@@ -5,7 +5,7 @@ import StyledContainer from '../../styles/components/Container'
 
 export const Container = styled.div(({ theme }) => {
   return {
-    
+    position: 'relative'
   }
 })
 
@@ -129,7 +129,7 @@ export const QuestionsLenght = styled.span(({ theme }) => {
   }
 })
 
-export const QuestionContainer = styled.div(({ theme }) => {
+export const QuestionForm = styled.form(({ theme }) => {
   return {
     width: '100%',
     display: 'grid',
