@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
 
 import accountImg from '../assets/images/account.png'
 
@@ -31,7 +30,6 @@ export const UserContext = createContext<UserContextProps>({
 
 export function UserProvider({ children }: UserProviderProps) {
   const auth = getAuth()
-  const navigate = useNavigate()
   const [authStatus, setAuthStatus] = useState<AuthStatus>('pending')
   const [user, setUser] = useState<User>()
 
@@ -52,16 +50,14 @@ export function UserProvider({ children }: UserProviderProps) {
     })
 
     return () => unsubscribe()
-  }, [])
+  }, [auth])
 
   async function signin() {
-    await signInWithPopup(auth, new GoogleAuthProvider)
-    navigate('/rooms')
+    await signInWithPopup(auth, new GoogleAuthProvider())
   }
 
   async function signout() {
     await signOut(auth)
-    navigate('/')
   }
 
   return (
