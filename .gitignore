@@ -3,6 +3,8 @@
 
 # production
 /build
+.firebase
+.firebaserc
 
 # variables
 .env

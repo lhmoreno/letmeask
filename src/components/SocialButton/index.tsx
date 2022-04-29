@@ -1,9 +1,9 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from 'react'
+import { ButtonHTMLAttributes } from 'react'
 import googleSvg from '../../assets/icons/google.svg'
 import * as Styled from './styles'
 
 interface SocialButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'google',
+  variant: 'google'
 }
 
 function SocialButton({ variant, ...props }: SocialButtonProps) {

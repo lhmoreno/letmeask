@@ -1,10 +1,10 @@
-import { endAt, get, getDatabase, onValue, orderByKey, query, ref, startAt } from 'firebase/database'
+import { endAt, get, getDatabase, orderByKey, query, ref, startAt } from 'firebase/database'
 import { ChangeEventHandler, useEffect, useState } from 'react'
 
 
 interface FirebaseRooms extends Record<string, {
   title: string
-  questions: Record<string, {}>
+  questions?: Record<string, {}>
 }> {}
 
 interface RoomsView {
